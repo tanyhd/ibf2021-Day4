@@ -8,11 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 public class Cookie {
 
     // load cookie text file
-    private File userfile = new File ("c:\\NUSISS\\gitFolderDay4\\ibf2021-Day4\\day4\\src\\main\\java\\ibf2021\\d4\\cookie_file.txt");
     private List<String> textList = new ArrayList<String>();
+    private File userfile;
+
+    public void setUserFile (String fileName) {
+        this.userfile = new File ("c:\\NUSISS\\Module1\\gitFolderDay4\\ibf2021-Day4\\day4\\src\\main\\java\\ibf2021\\d4\\" + fileName);
+    }
     
     public String getText () throws IOException {
 

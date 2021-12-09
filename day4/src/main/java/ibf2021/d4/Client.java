@@ -5,26 +5,41 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.List;
 import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args) {
-        try (Socket socket = new Socket("localhost", 5000)) {
-            BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            PrintWriter stringToSend = new PrintWriter(socket.getOutputStream(), true);
+        int port = 5000;
+        String host = "localhost";
+        String[] hostAndPort;
+
+        if (args.length != 0) {
+            hostAndPort = args[0].split(":");
+            host = hostAndPort[0];
+            port = Integer.parseInt(hostAndPort[1]);
+            System.out.println("Connecting to " + host + " at port" + port);
+        } else {
+            System.out.println("Connecting to default " + host + " at port: " + port);
+        }
+
+
+        try (Socket socket = new Socket(host, port)) {
+            BufferedReader serverOutput = new BufferedReader(new InputStreamReader(socket.getInputStream())); // infomation from sever
+            PrintWriter stringToSend = new PrintWriter(socket.getOutputStream(), true); // information to send to server
 
             Scanner scanner = new Scanner(System.in);
             String userInput;
-            String response; 
+            String outputFromServer; 
 
             do {
-                System.out.println("Get more cookie? ");
+                System.out.println("Enter request");
                 userInput = scanner.nextLine();
 
                 stringToSend.println(userInput);
                 if (!userInput.equals("close")) {
-                    response = input.readLine();
-                    System.out.println(response);
+                    outputFromServer = serverOutput.readLine();
+                    System.out.println(outputFromServer);
                 }
             } while (!userInput.equals("close"));
 
