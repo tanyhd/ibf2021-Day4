@@ -16,8 +16,9 @@ public class Server {
         if (args.length != 0) {
             port = Integer.parseInt(args[0]);
             fileName = args[1];
+            System.out.println("Server listening at port: " + port);
         } else {
-            System.out.println("Default port set to : " + port);
+            System.out.println("Server listening at port: " + port);
         }
 
         try (ServerSocket serverSocket = new ServerSocket(port)) {
