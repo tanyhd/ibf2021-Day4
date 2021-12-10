@@ -1,4 +1,4 @@
-package ibf2021.d4;
+package fc;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,23 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.swing.filechooser.FileNameExtensionFilter;
-
 public class Cookie {
 
     // load cookie text file
     private List<String> textList = new ArrayList<String>();
     private File userfile;
 
-    public void setUserFile (String fileName) {
-        this.userfile = new File ("c:\\NUSISS\\Module1\\gitFolderDay4\\ibf2021-Day4\\day4\\src\\main\\java\\ibf2021\\d4\\" + fileName);
+    public void setUserFile(String fileName) {
+        this.userfile = new File(
+                "./" + fileName);
     }
-    
-    public String getText () throws IOException {
+
+    public String getText() throws IOException {
 
         BufferedReader br = new BufferedReader(new FileReader(userfile));
 
-        // Add text from file to a list
+        // Add text f rom file to a list
         String itemsInFile;
         while ((itemsInFile = br.readLine()) != null) {
             this.textList.add(itemsInFile);
@@ -37,4 +36,3 @@ public class Cookie {
         return textList.get(index);
     }
 }
-

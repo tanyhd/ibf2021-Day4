@@ -1,4 +1,4 @@
-package ibf2021.d4;
+package fc;
 
 import java.io.BufferedReader;
 import java.io.IOException;
